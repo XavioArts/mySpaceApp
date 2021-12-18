@@ -12,10 +12,10 @@ function App() {
     <div>
       <Routes>
         <Route element={<Layout/>}>
-          <Route path="/" element={<Home/>} />
           <Route path="/public" element={<Public/>} />
           <Route path="/login" element={<LogIn/>} />
           <Route element={<RequireAuth/>} >
+            <Route path="/" element={<Home/>} />
             <Route path="/protected" element={<Protected/>} />
           </Route>
         </Route>

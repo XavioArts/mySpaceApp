@@ -25,7 +25,7 @@ const Home = () => {
             <div style={{width: "100%", overflowWrap: "break-word"}} >
                 <Typography variant="body1" gutterBottom component="div" >{JSON.stringify(auth)}</Typography>
             </div>
-            <Button variant="contained" onClick={()=>navigate("/login")} >Log In</Button>
+            {/* <Button variant="contained" onClick={()=>navigate("/login")} >Log In</Button> */}
             <Button variant="outlined" onClick={()=>auth.handleLogout(navigate)} >Log Out</Button>
             <Button variant="outlined" onClick={()=>navigate("/protected")}>User View</Button>
         </HomeDiv>

@@ -42,7 +42,7 @@ const AuthProvider = (props) => {
             let res = await axios.delete("/api/auth/sign_out");
             console.log(res);
             setUser(null);
-            navigate("/");
+            navigate("/public");
         } catch (err) {
             console.log(err.response);
             alert("an error occurred logging out");

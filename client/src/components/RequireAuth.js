@@ -7,31 +7,31 @@ import { AuthContext } from "../providers/AuthProvider";
 const RequireAuth = () => {
 
     const auth = useContext(AuthContext);
-    const [checkingAuthStatus, setCheckingAuthStatus] = useState(true);
+    // const [checkingAuthStatus, setCheckingAuthStatus] = useState(true);
 
-    useEffect(()=>{
-        checkAuthStatus();
-    },[]);
+    // useEffect(()=>{
+    //     checkAuthStatus();
+    // },[]);
 
-    const checkAuthStatus = async () => {
-        if (auth.authenticated || !localStorage.getItem("access-token")) {
-            console.log("authenticated");
-            setCheckingAuthStatus(false);
-            return;
-        }
-        try {
-            console.log("validating token");
-            const res = await axios.get("/api/auth/validate_token");
-            auth.setUser(res.data.data);
-        } catch (err) {
-            console.log(err.respose);
-            console.log("unable to validate token");
-        } finally {
-            setCheckingAuthStatus(false);
-        }
-    };
+    // const checkAuthStatus = async () => {
+    //     if (auth.authenticated || !localStorage.getItem("access-token")) {
+    //         console.log("authenticated");
+    //         setCheckingAuthStatus(false);
+    //         return;
+    //     }
+    //     try {
+    //         console.log("validating token");
+    //         const res = await axios.get("/api/auth/validate_token");
+    //         auth.setUser(res.data.data);
+    //     } catch (err) {
+    //         console.log(err.respose);
+    //         console.log("unable to validate token");
+    //     } finally {
+    //         setCheckingAuthStatus(false);
+    //     }
+    // };
 
-    if (checkingAuthStatus) {
+    if (auth.checkingAuthStatus) {
         return (
             <Box sx={{display: "flex", justifyContent: "center"}} >
                 <CircularProgress />

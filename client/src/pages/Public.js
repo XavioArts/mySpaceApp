@@ -1,10 +1,16 @@
 import { Button } from "@mui/material";
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useContext } from "react";
+import { Navigate, useNavigate } from "react-router-dom";
+import { AuthContext } from "../providers/AuthProvider";
 
 const Public = () => {
 
     const navigate = useNavigate();
+    const { authenticated } = useContext(AuthContext);
+
+    if (authenticated) {
+        return <Navigate to="/" />;
+    }
 
     return (
         <div>

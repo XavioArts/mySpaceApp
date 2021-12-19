@@ -1,11 +1,12 @@
 import { Tab, Tabs } from "@mui/material";
 import React, { useContext } from "react";
-import { Link, matchPath, useLocation } from "react-router-dom";
+import { Link, matchPath, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../providers/AuthProvider";
 
 const NavBar = () => {
 
-    const { authenticated } = useContext(AuthContext);
+    const { authenticated, handleLogout } = useContext(AuthContext);
+    const navigate = useNavigate();
 
     const useRouteMatch = (patterns) => {
         const { pathname } = useLocation();
@@ -21,19 +22,28 @@ const NavBar = () => {
         return null;
     }
 
-    const routeMatch = useRouteMatch(["/", "/public", "/protected"]);
+    const routeMatch = useRouteMatch(["/", "/public", "/protected", "/login"]);
     const currentTab = routeMatch?.pattern?.path;
+
+    if (!authenticated) {
+        return (
+            <div style={styles.container} > 
+              <Tabs value={currentTab} >
+                 <Tab label="Public" value="/public" to="/public" component={Link} />
+                 <Tab label="Login" value="/login" to="/login" component={Link} />
+                </Tabs>
+            </div>
+        )
+    }
 
     return (
         <div style={styles.container} > 
             <Tabs value={currentTab} >
                 <Tab label="Home" value="/" to="/" component={Link} />
-                <Tab label="Public" value="/public" to="/public" component={Link} />
-                {authenticated && <Tab label="Protected" value="/protected" to="/protected" component={Link} />}
+                <Tab label="Users" value="/users" to="/users" component={Link} />
+                <Tab label="Protected" value="/protected" to="/protected" component={Link} />
+                <Tab label="Logout" onClick={()=>handleLogout(navigate)} />
             </Tabs>
-            {/* <Link to="/" style={styles.link} >Home</Link>
-            <Link to="/public" style={styles.link} >Public</Link>
-            {authenticated && <Link to="/protected" style={styles.link} >Protected</Link>} */}
         </div>
     );
 };

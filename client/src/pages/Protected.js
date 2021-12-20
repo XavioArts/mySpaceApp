@@ -45,7 +45,7 @@ const Protected = () => {
                     onChange={(e)=>setEmail(e.target.value)} />
                 <Button type="submit" >Submit</Button>
             </Box>
-            <Button>Delete</Button>
+            <Button onClick={()=>auth.handleDelete(navigate)} >Delete</Button>
         </div>
     );
 };

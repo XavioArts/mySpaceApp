@@ -22,6 +22,7 @@ const Home = () => {
                 <Icon sx={{fontSize: 100}} >fort</Icon>
                 <Typography variant="h1" >Home</Typography>
             </div>
+            <Typography variant="h4">Hello {auth.username}</Typography>
             <div style={{width: "100%", overflowWrap: "break-word"}} >
                 <Typography variant="body1" gutterBottom component="div" >{JSON.stringify(auth)}</Typography>
             </div>

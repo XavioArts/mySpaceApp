@@ -9,6 +9,8 @@ const Register = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [passwordConfirm, setPasswordConfirm] = useState("");
+    const [username, setUsername] = useState("");
+    const [name, setName] = useState("");
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -16,11 +18,15 @@ const Register = () => {
             alert("password does not match");
             return;
         }
-        handleRegister({ email, password }, navigate);
+        handleRegister({ email, password, name, username }, navigate);
     }
 
     return (
         <form onSubmit={handleSubmit} >
+            <p>Name:</p>
+            <input value={name} onChange={(e)=>setName(e.target.value)} />
+            <p>Username:</p>
+            <input value={username} onChange={(e)=>setUsername(e.target.value)} />
             <p>Email:</p>
             <input value={email} onChange={(e)=>setEmail(e.target.value)} />
             <p>Password:</p>

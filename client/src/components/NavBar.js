@@ -22,7 +22,7 @@ const NavBar = () => {
         return null;
     }
 
-    const routeMatch = useRouteMatch(["/", "/public", "/protected", "/login"]);
+    const routeMatch = useRouteMatch(["/", "/public", "/protected", "/login", "/posts", "/users"]);
     const currentTab = routeMatch?.pattern?.path;
 
     if (!authenticated) {
@@ -41,7 +41,8 @@ const NavBar = () => {
             <Tabs value={currentTab} >
                 <Tab label="Home" value="/" to="/" component={Link} />
                 <Tab label="Users" value="/users" to="/users" component={Link} />
-                <Tab label="Protected" value="/protected" to="/protected" component={Link} />
+                <Tab label="Posts" value="/posts" to="/posts" component={Link} />
+                <Tab label="Settings" value="/protected" to="/protected" component={Link} />
                 <Tab label="Logout" onClick={()=>handleLogout(navigate)} />
             </Tabs>
         </div>

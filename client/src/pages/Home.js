@@ -6,6 +6,7 @@ import Button from "@mui/material/Button";
 import { Icon } from "@mui/material";
 import styled from "styled-components";
 import axios from "axios";
+import NewPost from "../components/NewPost";
 
 const Home = () => {
 
@@ -27,6 +28,10 @@ const Home = () => {
         }
     }
 
+    const addPost = (post) => {
+        setMyPosts(...myPosts, post);
+    };
+
 
     return (
         <HomeDiv>
@@ -46,6 +51,8 @@ const Home = () => {
             <div style={{width: "100%", overflowWrap: "break-word"}} >
                 <Typography variant="body1" gutterBottom component="div" >{JSON.stringify(myPosts)}</Typography>
             </div>
+            <hr/>
+            <NewPost addPost={addPost} />
         </HomeDiv>
     );
 };

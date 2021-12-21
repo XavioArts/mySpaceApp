@@ -1,11 +1,13 @@
 import { Avatar, Box, Icon, IconButton, List, ListItem, ListItemAvatar, ListItemText, Typography } from "@mui/material";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const Users = () => {
 
     const [users, setUsers] = useState([]);
+    const navigate = useNavigate();
 
     useEffect(()=>{
         getUsers();
@@ -26,9 +28,12 @@ const Users = () => {
         return users.map((u)=> {
             return (
                 <ListItem secondaryAction={
-                    <IconButton edge="end" label="view" >
+                    <>
+                    <label>view</label>
+                    <IconButton onClick={()=>navigate(`/users/${u.id}`)} edge="end" label="view" >
                         <Icon>visibility</Icon>
                     </IconButton>
+                    </>
                 } >
                     <ListItemAvatar>
                         <Avatar>

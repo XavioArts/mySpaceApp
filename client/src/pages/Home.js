@@ -29,7 +29,7 @@ const Home = () => {
     }
 
     const addPost = (post) => {
-        setMyPosts(...myPosts, post);
+        setMyPosts([...myPosts, post]);
     };
 
 

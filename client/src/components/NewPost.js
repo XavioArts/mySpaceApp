@@ -13,6 +13,7 @@ const NewPost = (props) => {
             let newPost = {content: content, likes: 0};
             let res = await axios.post("/api/posts", newPost);
             addPost(res.data);
+            setContent("");
         } catch (err) {
             console.log(err.response);
             alert("error making post")

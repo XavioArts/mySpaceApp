@@ -7,7 +7,7 @@ const Post = (props) => {
 
 
     return (
-        <Card>
+        <Card elevation={3} >
             <CardHeader 
             avatar={
                 <Avatar>

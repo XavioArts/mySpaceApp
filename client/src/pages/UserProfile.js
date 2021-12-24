@@ -1,8 +1,9 @@
-import { Typography } from "@mui/material";
+import { Box, Button, CircularProgress, Paper, Typography } from "@mui/material";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Post from "../components/Post";
+import styled from "styled-components";
 
 const UserProfile = () => {
     
@@ -35,17 +36,50 @@ const UserProfile = () => {
         });
     }
 
+    if (!user) {
+        return (
+            <ProfileDiv>
+                <Box sx={{display: "flex", justifyContent: "center"}} >
+                    <CircularProgress />
+                    <Box sx={{
+                        top: 0,
+                        right: 42,
+                        position: "relative",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",                    
+                        }} >
+                        <Typography variant="caption" component="div" >Loading</Typography>
+                    </Box>
+                </Box>
+            </ProfileDiv>
+        )
+    }
+
     return (
-        <div>
-            <Typography variant="h1" >User Profile</Typography>
-            <Typography variant="p" >Info on this user and list of thier posts</Typography>
-            <br/>
-            <hr/>
-            <Typography variant="p" >{JSON.stringify(user)}</Typography>
-            <hr/>
+        <ProfileDiv>
+            <Typography variant="h1" >{user.username}</Typography>
+            <Typography variant="p" component="div" gutterBottom >Info on this user</Typography>
+            <Paper sx={{ width: "75vw", display: "flex", justifyContent: "flex-end", padding: "20px" }} component="div" elevation={3}>
+                <div>
+                    <Typography variant="h5" component="div" gutterBottom >Name: {user.name}</Typography>
+                    <Typography variant="body1" component="div" gutterBottom >Email: {user.email}</Typography>
+                    <Button variant="contained">Add Friend</Button>
+                </div>
+            </Paper>
+            <Typography variant="h5" component="div" gutterBottom >{user.username}'s Posts</Typography>
             {user && renderPosts()}
-        </div>
+        </ProfileDiv>
     );
 };
+
+const ProfileDiv = styled.div`
+    padding: 10px;
+    margin: 30px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+`;
 
 export default UserProfile;

@@ -2,6 +2,7 @@ import { Typography } from "@mui/material";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Post from "../components/Post";
+import styled from "styled-components";
 
 const Posts = () => {
 
@@ -36,16 +37,28 @@ const Posts = () => {
     }
 
     return (
-        <div>
-            <Typography variant="h1" >Posts page</Typography>
-            <Typography variant="p" >Here you can view everyone's posts</Typography>
-            {/* <div style={{width: "100%", overflowWrap: "break-word"}} >
-                <Typography variant="body1" gutterBottom component="div" >{JSON.stringify(posts)}</Typography>
-            </div> */}
-            <hr/>
-            {posts && users && renderPosts()}
-        </div>
+        <PageDiv>
+            <div style={{textAlign: "center"}} >
+                <Typography variant="h1" >Post Feed</Typography>
+                <Typography variant="body2" >Here you can view everyone's posts</Typography>
+            </div>
+            <PostsDiv>
+                {posts && users && renderPosts()}
+            </PostsDiv>
+        </PageDiv>
     );
 };
+
+const PageDiv = styled.div`
+    padding: 10px;
+    margin: 30px 10px;
+`;
+const PostsDiv = styled.div`
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column-reverse;
+`;
 
 export default Posts;

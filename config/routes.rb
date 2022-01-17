@@ -10,4 +10,5 @@ Rails.application.routes.draw do
     get "all_posts", to: "posts#all_posts"
   end
 
+  get '*other', to: 'static#index'
 end
